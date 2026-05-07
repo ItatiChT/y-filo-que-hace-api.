@@ -34,49 +34,61 @@ evitar duplicación de lógica
 mejorar mantenimiento del código
 aumentar escalabilidad del sistema
 
-📦 Modelo de datos
+## 📦 Modelo de Datos
 
-El sistema está compuesto por tres entidades principales: Usuario, Grupo de investigación y Aporte académico.
+El sistema se estructura en tres entidades principales interconectadas, diseñadas para organizar la producción académica de la facultad.
 
-👤 Usuario (User)
-Campo	Tipo	Obligatorio	Descripción
-nombre	String	No	Nombre del usuario
-email	String	Sí	Identificador único para login
-password	String	Sí	Contraseña encriptada
-grupoId	ObjectId (Group)	No	Grupo al que puede estar asociado
-createdAt	Date	Auto	Fecha de creación
-updatedAt	Date	Auto	Fecha de actualización
-🧩 Grupo de investigación (Group)
-Campo	Tipo	Obligatorio	Descripción
-nombre	String	Sí	Nombre del grupo
-carrera	String	No	Área académica (Filosofía, Antropología, etc.)
-director	String	No	Responsable del grupo
-miembros	[String]	No	Integrantes del grupo
-contacto	String	No	Información de contacto
-resumen	String	No	Descripción general del grupo
-icono	String	No	Representación visual del grupo
-createdBy	ObjectId (User)	Sí	Usuario creador del grupo
-createdAt	Date	Auto	Fecha de creación
-updatedAt	Date	Auto	Fecha de actualización
-📄 Aporte académico (Aporte)
-Campo	Tipo	Obligatorio	Descripción
-grupoId	ObjectId (Group)	Sí	Grupo al que pertenece el aporte
-titulo	String	Sí	Título del aporte
-descripcion	String	Sí	Contenido o desarrollo del aporte
-autor	ObjectId (User)	No	Usuario autor del aporte
-link	String	No	Material externo asociado
-tipo	String	No	Tipo de aporte (PDF, evento, ensayo, etc.)
-palabrasClave	[String]	No	Etiquetas para búsqueda
-autores	[String]	No	Autores del trabajo
-fecha	Date	No	Fecha del material
-createdAt	Date	Auto	Fecha de creación
-updatedAt	Date	Auto	Fecha de actualización
-🧠 Relación entre entidades
-Un usuario puede crear múltiples grupos
-Un usuario puede crear múltiples aportes
-Un grupo contiene múltiples aportes
-Cada aporte pertenece a un único grupo
-Un usuario puede estar asociado opcionalmente a un grupo
+---
+
+### 👤 Usuario (User)
+Es la entidad central de autenticación. Gestiona el acceso y la vinculación con la actividad académica.
+
+| Campo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `nombre` | String | Nombre del usuario (Opcional). |
+| `email` | String | Identificador único y obligatorio. |
+| `password` | String | Contraseña encriptada (Obligatorio). |
+| `grupoId` | ObjectId | Referencia al grupo al que pertenece (Opcional). |
+
+---
+
+### 🧩 Grupo de Investigación (Group)
+Representa la unidad de trabajo. Es el contenedor de la producción y línea académica.
+
+| Campo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `nombre` | String | Nombre del grupo (Obligatorio). |
+| `carrera` | String | Área académica a la que pertenece. |
+| `director` | String | Responsable principal del grupo. |
+| `miembros` | Array | Lista de integrantes registrados. |
+| `createdBy` | ObjectId | Usuario administrador que creó el grupo. |
+
+---
+
+### 📄 Aporte Académico (Aporte)
+Publicaciones y materiales generados dentro de un grupo.
+
+| Campo | Tipo | Descripción |
+| :--- | :--- | :--- |
+| `titulo` | String | Título del trabajo o recurso (Obligatorio). |
+| `descripcion` | String | Cuerpo o resumen del contenido (Obligatorio). |
+| `tipo` | String | Formato (PDF, Evento, Ensayo, etc.). |
+| `link` | String | Enlace a material externo o descarga. |
+| `grupoId` | ObjectId | Referencia obligatoria al grupo propietario. |
+
+---
+
+### 🧠 Relaciones del Sistema
+
+Para entender cómo fluye la información, el modelo sigue estas reglas de integridad:
+
+* **1:N (Uno a Muchos):** Un **Usuario** puede crear múltiples **Grupos** y múltiples **Aportes**.
+* **1:N (Contenedor):** Un **Grupo** centraliza múltiples **Aportes**.
+* **Referencia:** Cada **Aporte** está anclado a un único **Grupo**.
+* **Asociación:** Un **Usuario** puede o no estar vinculado formalmente a un **Grupo** específico a través de su perfil.
+
+> [!TIP]
+> Todos los modelos incluyen automáticamente los campos `createdAt` y `updatedAt` para el control de versiones y auditoría de los datos.
 
 🔑 Endpoints principales
 
