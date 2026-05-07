@@ -1,7 +1,7 @@
 Proyecto: ¿Y filo qué hace? 📚
 
 "¿Y filo qué hace?" es una plataforma web diseñada para visibilizar la producción académica e investigativa de la Facultad de Filosofía y Humanidades. Surge con dos objetivos claros: primero, compartir la producción de la universidad pública, trascendiendo las paredes de la facultad para que cualquier persona interesada pueda conocer, con transparencia, en qué se está trabajando. Segundo, busca que los estudiantes conozcan las investigaciones de sus profesores para facilitar su integración a los grupos de trabajo o, en algún sentido, mapear los temas que más se tratan y detectar aquellos que aún faltan abordar. 
-La logica del proyecto es la siguiente: cualquier persona puede observar los grupos registrados y los aportes. Sin embargo para poder crear un grupo, se debera tener un usuario registrado. Este usuario sera el administrador del grupo y los aportes, solamente mediante su cuenta se puede añadir, editar o borrar los aportes y el grupo creado.
+La logica del sistema es la siguiente: cualquier persona puede observar los grupos registrados y los aportes. Sin embargo para poder crear un grupo, se debera tener un usuario registrado. Este usuario sera el administrador del grupo y los aportes, solamente mediante su cuenta se puede añadir, editar o borrar los aportes y el grupo creado.
 
 🚀 Características
 Gestión de Grupos: Creación y visualización de grupos académicos por carrera.
@@ -35,6 +35,8 @@ El proyecto sigue el patrón Modelo-Vista-Controlador para asegurar la escalabil
 /middlewares: Capa de seguridad y validación de tokens.
 
 /config: Configuración de la conexión a la base de datos.
+
+La lógica de proyecto se implementa dentro de los controllers, manteniendo una estructura funcional adecuada para el alcance actual. Como mejora futura, se propone la incorporación de una capa de services, encargada de centralizar la lógica de negocio (validaciones, reglas de permisos y operaciones sobre entidades). Esa futura incorporacion permitir reducir la responsabilidad de los controller, evitar la duplicación de lógica, mejorar el mantenimiento del código y aumentar la escalabilidad del sistema
 
 🔑 Endpoints Principales
  Autenticación (/auth)
@@ -91,7 +93,7 @@ Puede acceder al mismo mediante:
 - Se recomienda ejecutar primero el request de **Login** para que el Token se configure automáticamente en las rutas protegidas de Grupos y Aportes.
  
 
-### Notas sobre fronted: No se llego a cargarlo a Render, pero se pudo visualizar a idea (a modo de maqueta) con live server. Adjunto imagenes
+### Notas sobre frontend: No se llego a cargarlo a Render, pero se pudo visualizar a idea (a modo de maqueta) con live server. Adjunto imagenes
 
 ### Vista Principal (Biblioteca)
 ![Vista Principal](./imagenes/bibliotecacentral.png)
