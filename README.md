@@ -41,10 +41,10 @@ El proyecto sigue el patrón **Modelo–Vista–Controlador (MVC)**:
 ├── 📂 routes       # Definición de endpoints de la API.
 ├── 📂 middlewares  # Autenticación y validación de tokens.
 └── 📂 config       # Configuración de base de datos.
-
-
+```
 
 La lógica del sistema se implementa directamente en los controllers, manteniendo una estructura funcional acorde al alcance del proyecto. Como mejora futura, se propone la incorporación de una capa de services para centralizar la lógica de negocio (validaciones, reglas de permisos y operaciones sobre entidades), lo que permitiría:reducir la responsabilidad de los controllers, evitar duplicación de lógica, mejorar mantenimiento del código y aumentar escalabilidad del sistema
+
 
 ---
 
