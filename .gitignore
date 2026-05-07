@@ -1,0 +1,12 @@
+# Dependencias (esta carpeta es gigante, no se sube)
+node_modules/
+
+# Variables de entorno (SECRETOS: Nunca subirlos a GitHub)
+.env
+
+# Logs y archivos del sistema
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+dist/

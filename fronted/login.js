@@ -1,0 +1,27 @@
+const API = "http://localhost:3000";
+
+async function login() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const res = await fetch(`${API}/auth/login`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await res.json();
+
+  if (res.ok) {
+    // 👉 guardar token
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    // 👉 volver a home
+    window.location.href = "index.html";
+  } else {
+    document.getElementById("error").innerText = data.error;
+  }
+}

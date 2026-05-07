@@ -1,0 +1,85 @@
+body {
+  background-color: #f5f1e6;
+  font-family: "Georgia", serif;
+  color: #2c2c2c;
+  margin: 20px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* 📚 fondo biblioteca */
+.biblioteca {
+  position: relative;
+  height: 500px;
+  background-image: url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da");
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* capa para leer mejor */
+.biblioteca::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 248, 220, 0.75);
+}
+
+/* 📖 libros */
+.grupo {
+  position: absolute;
+  width: 140px;
+  height: 60px;
+  background: #e6d3a3;
+  border-left: 6px solid #8b6f47;
+  padding: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.grupo:hover {
+  transform: scale(1.08);
+  background: #f0e6d2;
+}
+
+/* detalle */
+#grupoInfo {
+  margin-top: 20px;
+}
+
+#aportes {
+  margin-top: 10px;
+}
+
+.formulario {
+  max-width: 300px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formulario input {
+  padding: 8px;
+  border: 1px solid #8b6f47;
+  background: #f5f1e6;
+  font-family: "Georgia", serif;
+}
+
+.formulario button {
+  padding: 10px;
+  background: #8b6f47;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.formulario button:hover {
+  background: #6e5636;
+}

@@ -1,0 +1,835 @@
+{
+  "info": {
+    "_postman_id": "1f53e836-a96f-46a0-89a0-a22fdeff3b27",
+    "name": "¿Y filo qué hace? API",
+    "description": "Pruebas de la api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51206499"
+  },
+  "item": [
+    {
+      "name": "Autenticacion",
+      "item": [
+        {
+          "name": "registro de usuario",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Estudiante prueba\",\r\n  \"email\": \"estudiante@gmail.com\",\r\n  \"password\": \"seguridad123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inicio de sesion",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"estudiante@gmail.com\",\r\n  \"password\": \"seguridad123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "obtengo mis datos",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/auth/profile",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Grupos",
+      "item": [
+        {
+          "name": "creo grupo 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Grupo de Prueba Postman\",\r\n  \"carrera\": \"Sistemas\",\r\n  \"director\": \"Profe Ada\",\r\n  \"resumen\": \"Grupo para testear toda la API\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/groups",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "creo grupo 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Grupo de Prueba Postman2\",\r\n  \"carrera\": \"Sistemas2\",\r\n  \"director\": \"Profe Ada2\",\r\n  \"resumen\": \"Grupo para testear toda la API2\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/groups",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "veo todos los grupos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/groups",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "elimino un grupo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/groups/69fc8e7218a6d6ed110f9580",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups",
+                "69fc8e7218a6d6ed110f9580"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edito grupo 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Nombre Actualizado\",\r\n  \"resumen\": \"Cambiamos el resumen para probar\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/groups/69fc8e2218a6d6ed110f957f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups",
+                "69fc8e2218a6d6ed110f957f"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Aportes",
+      "item": [
+        {
+          "name": "creo aporte 1",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte de Prueba\",\r\n  \"contenido\": \"Este es el contenido del primer aporte de prueba\",\r\n  \"groupId\": \"69fc8e2218a6d6ed110f957f\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "creo aporte 2",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte de Prueba2\",\r\n  \"contenido\": \"Este es el contenido del primer aporte de prueba2\",\r\n  \"groupId\": \"69fc8e2218a6d6ed110f957f\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "creo aporte 3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte de Prueba\",\r\n  \"contenido\": \"Este es el contenido del primer aporte de prueba\",\r\n  \"groupId\": \"69fc8e2218a6d6ed110f957f\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "veo todos los aportes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "veo los aportes de un grupo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/aportes?grupoId=69fc8e2218a6d6ed110f957f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ],
+              "query": [
+                {
+                  "key": "grupoId",
+                  "value": "69fc8e2218a6d6ed110f957f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edito aporte",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte Editado con Éxito\",\r\n  \"contenido\": \"Cambiamos el contenido para ver si el PUT funciona\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes/69fc8fc518a6d6ed110f9582",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes",
+                "69fc8fc518a6d6ed110f9582"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "borro aporte 3",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM4OTQ1MThhNmQ2ZWQxMTBmOTU3ZSIsImlhdCI6MTc3ODE1ODA3MSwiZXhwIjoxNzc4MjQ0NDcxfQ.JCXjG9-XclTzGrrqDoV-tAP77nRJc0RJfPIeS0cQBKk",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/aportes/69fc8feb18a6d6ed110f9583",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes",
+                "69fc8feb18a6d6ed110f9583"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "New Request",
+          "request": {
+            "method": "GET",
+            "header": []
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pruebas de seguridad",
+      "item": [
+        {
+          "name": "no acepta el mismo correo",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Estudiante prueba1\",\r\n  \"email\": \"estudiante@gmail.com\",\r\n  \"password\": \"seguridad123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nombre\": \"Estudiantedos prueba\",\r\n  \"email\": \"estudiantedos@gmail.com\",\r\n  \"password\": \"seguridad1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inicio sesion invalido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"estudiantedostres@gmail.com\",\r\n  \"password\": \"seguridad123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "inicio de sesion valido",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"estudiantedos@gmail.com\",\r\n  \"password\": \"seguridad1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "elimino grupo no propio",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM5NzNjMThhNmQ2ZWQxMTBmOTU4NCIsImlhdCI6MTc3ODE2MTc3MiwiZXhwIjoxNzc4MjQ4MTcyfQ.dTUjTTnDWVV5WTvmeSydo_tDm0MAi7Fmrhq526WSvMw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/groups/69fc8e2218a6d6ed110f957f",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups",
+                "69fc8e2218a6d6ed110f957f"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "edito aporte no propio",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM5NzNjMThhNmQ2ZWQxMTBmOTU4NCIsImlhdCI6MTc3ODE2MTc3MiwiZXhwIjoxNzc4MjQ4MTcyfQ.dTUjTTnDWVV5WTvmeSydo_tDm0MAi7Fmrhq526WSvMw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte Editado con Éxito1\",\r\n  \"contenido\": \"Cambiamos el contenido para ver si el PUT funciona\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes/69fc8fc518a6d6ed110f9582",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes",
+                "69fc8fc518a6d6ed110f9582"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "aportes con grupoId invalido",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/aportes?grupoId=69fc8e2218a6d6ed110f957k",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ],
+              "query": [
+                {
+                  "key": "grupoId",
+                  "value": "69fc8e2218a6d6ed110f957k"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aportes. datos incompletos",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM5NzNjMThhNmQ2ZWQxMTBmOTU4NCIsImlhdCI6MTc3ODE2MTc3MiwiZXhwIjoxNzc4MjQ4MTcyfQ.dTUjTTnDWVV5WTvmeSydo_tDm0MAi7Fmrhq526WSvMw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte Incompleto\",\r\n  \"contenido\": \"\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aporte, id  grupo invalido",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM5NzNjMThhNmQ2ZWQxMTBmOTU4NCIsImlhdCI6MTc3ODE2MTc3MiwiZXhwIjoxNzc4MjQ4MTcyfQ.dTUjTTnDWVV5WTvmeSydo_tDm0MAi7Fmrhq526WSvMw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"titulo\": \"Aporte Fantasma\",\r\n  \"contenido\": \"Intentando publicar en un grupo inexistente\",\r\n  \"groupId\": \"65f4a2b3c1d2e3f4a5b6c7d8\" \r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/aportes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "aportes"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "borrar grupo que no existe",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZmM5NzNjMThhNmQ2ZWQxMTBmOTU4NCIsImlhdCI6MTc3ODE2MTc3MiwiZXhwIjoxNzc4MjQ4MTcyfQ.dTUjTTnDWVV5WTvmeSydo_tDm0MAi7Fmrhq526WSvMw",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/groups/65f4a2b3c1d2e3f4a5b6c7d8",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "groups",
+                "65f4a2b3c1d2e3f4a5b6c7d8"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "utilizado para probar que todas las rutas protegidas funcionen bien"
+    }
+  ]
+}
