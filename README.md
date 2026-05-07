@@ -91,6 +91,14 @@ Puede acceder al mismo mediante:
 - Se recomienda ejecutar primero el request de **Login** para que el Token se configure automáticamente en las rutas protegidas de Grupos y Aportes.
  
 
+### Notas sobre fronted: No se llego a cargarlo a Render, pero se pudo visualizar a idea (a modo de maqueta) con live server. Adjunto imagenes
+
+### Vista Principal (Biblioteca)
+![Vista Principal](./imagenes/bibliotecacentral.png)
+
+### Detalle del Grupo y aportes
+![Detalle de Grupo](./imagenes/grupoyaporte.png)
+
 👤 Autor
 Chiiliguay Torramorell Maria Itati. Estudiante de ADA
 Trabajo Práctico Integrador:¡Tu Proyecto Back End!
