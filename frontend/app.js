@@ -29,7 +29,7 @@ let gruposGlobal = [];
 
 // 📦 CARGAR GRUPOS
 async function cargarGrupos() {
-  const res = await fetch('https://y-filo-que-hace-api.onrender.com/api/grupos') //fetch(`${API}/groups`); lo cambio para conectar con render
+  const res = await fetch(`${API}/groups`);//fetch('https://y-filo-que-hace-api.onrender.com/api/grupos')  para conectar con render
   const grupos = await res.json();
 
   gruposGlobal = grupos;
