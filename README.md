@@ -1,84 +1,120 @@
 Proyecto: ¿Y filo qué hace? 📚
 
-"¿Y filo qué hace?" es una plataforma web diseñada para visibilizar la producción académica e investigativa de la Facultad de Filosofía y Humanidades. Surge con dos objetivos claros: primero, compartir la producción de la universidad pública, trascendiendo las paredes de la facultad para que cualquier persona interesada pueda conocer, con transparencia, en qué se está trabajando. Segundo, busca que los estudiantes conozcan las investigaciones de sus profesores para facilitar su integración a los grupos de trabajo o, en algún sentido, mapear los temas que más se tratan y detectar aquellos que aún faltan abordar. 
-La logica del sistema es la siguiente: cualquier persona puede observar los grupos registrados y los aportes. Sin embargo para poder crear un grupo, se debera tener un usuario registrado. Este usuario sera el administrador del grupo y los aportes, solamente mediante su cuenta se puede añadir, editar o borrar los aportes y el grupo creado.
+“¿Y filo qué hace?” es una plataforma web diseñada para visibilizar la producción académica e investigativa de la Facultad de Filosofía y Humanidades.
 
-🚀 Características
-Gestión de Grupos: Creación y visualización de grupos académicos por carrera.
+El sistema permite la consulta pública de grupos de investigación y sus aportes, con el objetivo de facilitar el acceso a la producción académica y promover la integración de estudiantes a equipos de trabajo.
 
-Aportes Académicos: Publicación de textos, eventos, materiales y notas de investigación.
-
-Seguridad: Autenticación de usuarios mediante JWT (JSON Web Tokens).
-
-Privacidad: Solo los creadores autorizados pueden gestionar el contenido de sus grupos.
-
-Protección: Implementación de Rate Limiting para prevenir ataques de fuerza bruta en el acceso.
+La lógica del sistema establece que cualquier usuario puede visualizar grupos y aportes, pero la creación y administración de grupos está restringida a usuarios registrados. Cada usuario autenticado actúa como administrador de sus propios grupos, pudiendo crear, editar y eliminar tanto grupos como sus aportes.
 
 🛠️ Tecnologías utilizadas
-Backend: Node.js y Express.js
 
-Base de Datos: MongoDB con Mongoose (ODM).
+Node.js & Express.js: servidor y manejo de rutas.
+MongoDB & Mongoose: base de datos y modelado de datos.
+JWT (jsonwebtoken): autenticación y control de acceso.
+bcrypt.js: encriptación de contraseñas.
+express-rate-limit: protección contra ataques de fuerza bruta.
+express-validator / regex: validación de datos.
 
-Seguridad: Bcrypt.js (hasheo de contraseñas) y JWT (autorización).
+🏗️ Estructura del proyecto (MVC)
 
-Validaciones: Express-rate-limit y Regex para integridad de datos.
+El proyecto sigue el patrón Modelo–Vista–Controlador (MVC):
 
-🏗️ Estructura del Proyecto (MVC)
-El proyecto sigue el patrón Modelo-Vista-Controlador para asegurar la escalabilidad:
+/models → esquemas de datos (User, Group, Aporte).
+/controllers → lógica de negocio y manejo de requests.
+/routes → definición de endpoints de la API.
+/middlewares → autenticación y validación de tokens.
+/config → configuración de base de datos.
 
-/models: Definición de los esquemas de datos (User, Group, Aporte).
+La lógica del sistema se implementa directamente en los controllers, manteniendo una estructura funcional acorde al alcance del proyecto.
 
-/controllers: Lógica de negocio y procesamiento de peticiones.
+Como mejora futura, se propone la incorporación de una capa de services para centralizar la lógica de negocio (validaciones, reglas de permisos y operaciones sobre entidades), lo que permitiría:
 
-/routes: Definición de los puntos de entrada (endpoints) de la API.
+reducir la responsabilidad de los controllers
+evitar duplicación de lógica
+mejorar mantenimiento del código
+aumentar escalabilidad del sistema
 
-/middlewares: Capa de seguridad y validación de tokens.
+📦 Modelo de datos
 
-/config: Configuración de la conexión a la base de datos.
+El sistema está compuesto por tres entidades principales: Usuarios, Grupos de investigación y Aportes, que se relacionan entre sí para estructurar la producción académica dentro de la plataforma.
 
-La lógica de proyecto se implementa dentro de los controllers, manteniendo una estructura funcional adecuada para el alcance actual. Como mejora futura, se propone la incorporación de una capa de services, encargada de centralizar la lógica de negocio (validaciones, reglas de permisos y operaciones sobre entidades). Esa futura incorporacion permitir reducir la responsabilidad de los controller, evitar la duplicación de lógica, mejorar el mantenimiento del código y aumentar la escalabilidad del sistema
+👤 Usuario (User)
 
-🔑 Endpoints Principales
- Autenticación (/auth)
-POST /auth/register — Registro de nuevos académicos y usuarios.
+El usuario es la entidad central de autenticación del sistema. Permite el registro, inicio de sesión y acceso a funcionalidades protegidas. A su vez, puede estar vinculado a un grupo de investigación.
 
-POST /auth/login — Inicio de sesión y obtención del token (JWT).
+nombre (String) → nombre del usuario (opcional)
+email (String) → identificador único para autenticación (obligatorio / único)
+password (String) → contraseña encriptada (obligatorio)
+grupoId (ObjectId → Group) → grupo al que puede pertenecer (opcional)
+createdAt / updatedAt → campos automáticos del sistema
+🧩 Grupo de investigación (Group)
 
-GET /auth/profile — Obtención de los datos del perfil actual. Esta opcion es una ruta protegida, se penso para facilitar la visualizacion del token o los datos del mismo usuario registrado.
+El grupo representa una unidad de trabajo académico dentro de la facultad. Cada grupo es creado por un usuario, quien actúa como su administrador, y concentra información y producción asociada a una línea de investigación.
 
- Grupos de Investigación (/groups)
-GET /groups — Listado de todos los grupos (admite filtros por carrera vía query strings).
+nombre (String) → nombre del grupo (obligatorio)
+carrera (String) → área académica (opcional)
+director (String) → responsable del grupo (opcional)
+miembros (Array de Strings) → integrantes del grupo (opcional)
+contacto (String) → información de contacto (opcional)
+resumen (String) → descripción general del grupo (opcional)
+icono (String) → representación visual del grupo (opcional)
+createdBy (ObjectId → User) → usuario creador del grupo (obligatorio)
+createdAt / updatedAt → campos automáticos del sistema
+📄 Aporte académico (Aporte)
 
-POST /groups — Creación de un nuevo grupo de investigación. (Ruta Protegido) Actualmente, un usuario puede crear dos grupos, pero a futuro, podria restringirse a solo un grupo por persona.
+Los aportes representan las publicaciones realizadas dentro de un grupo de investigación. Cada aporte está asociado a un grupo específico y puede tener un autor vinculado.
 
-PUT /groups/:id — Actualización de los datos del grupo. (Protegido - Solo dueño)
+grupoId (ObjectId → Group) → grupo al que pertenece (obligatorio)
+titulo (String) → título del aporte (obligatorio)
+descripcion (String) → contenido del aporte (obligatorio)
+autor (ObjectId → User) → usuario autor (opcional)
+link (String) → material externo asociado (opcional)
+tipo (String) → tipo de aporte (PDF, evento, ensayo, etc.) (opcional)
+palabrasClave (Array de Strings) → etiquetas de búsqueda (opcional)
+autores (Array de Strings) → autores del trabajo (opcional)
+fecha (Date) → fecha del material (opcional)
+createdAt / updatedAt → campos automáticos del sistema
 
-DELETE /groups/:id — Eliminación definitiva del grupo. (Protegido - Solo dueño)
+🧠 Relación entre entidades
+Un usuario puede crear múltiples grupos.
+Un usuario puede crear múltiples aportes.
+Un grupo puede contener múltiples aportes.
+Cada aporte pertenece a un único grupo.
+Un usuario puede estar asociado opcionalmente a un grupo.
 
- Aportes y Contenido (/aportes)
-GET /aportes — Visualización de aportes (se puede filtrar por grupoId).
 
-POST /aportes — Publicación de nuevo contenido académico. (Protegido - Solo creador del grupo)
+🔑 Endpoints principales
 
-PUT /aportes/:id — Edición de un aporte existente. (Protegido - Solo autor)
+Autenticación (/auth)
 
-DELETE /aportes/:id — Eliminación de un aporte. (Protegido - Solo autor)
+POST /auth/register → registro de usuario
+POST /auth/login → login y generación de JWT
+GET /auth/profile → datos del usuario autenticado (ruta protegida)
 
-⚙️ Instalación y Configuración
-1.Clonar el repositorio.
+Grupos (/groups)
 
-2.Instalar dependencias:   npm install
+GET /groups → listado de grupos (con filtros por carrera)
+POST /groups → creación de grupo (protegido)
+PUT /groups/:id → edición de grupo (solo propietario)
+DELETE /groups/:id → eliminación de grupo (solo propietario)
 
-3.Configurar el archivo .env con las siguientes variables:
+Aportes (/aportes)
 
-PORT: Puerto del servidor.
+GET /aportes → listado de aportes (filtrable por grupoId)
+POST /aportes → creación de aporte (protegido)
+PUT /aportes/:id → edición de aporte (solo autor)
+DELETE /aportes/:id → eliminación de aporte (solo autor)
 
-MONGO_URI: Cadena de conexión a MongoDB.
+⚙️ Instalación y configuración
+Clonar el repositorio
+Instalar dependencias: npm install
+Crear archivo .env con:
 
-JWT_SECRET: Clave secreta para los tokens.
+PORT
+MONGO_URI
+JWT_SECRET
 
-4.Iniciar el servidor: npm run dev
-
+Ejecutar el servidor: npm run dev
 
 🧪 Pruebas de la API
 
@@ -92,8 +128,11 @@ Puede acceder al mismo mediante:
 - La colección incluye ejemplos de carga de datos para cada ruta.
 - Se recomienda ejecutar primero el request de **Login** para que el Token se configure automáticamente en las rutas protegidas de Grupos y Aportes.
  
+ 🖥️ Frontend
 
-### Notas sobre frontend: No se llego a cargarlo a Render, pero se pudo visualizar a idea (a modo de maqueta) con live server. Adjunto imagenes
+El frontend no fue desplegado en producción, pero puede ejecutarse localmente mediante Live Server como maqueta funcional.
+
+Se adjuntan capturas de:
 
 ### Vista Principal (Biblioteca)
 ![Vista Principal](./imagenes/bibliotecacentral.png)
