@@ -36,52 +36,47 @@ aumentar escalabilidad del sistema
 
 📦 Modelo de datos
 
-El sistema está compuesto por tres entidades principales: Usuarios, Grupos de investigación y Aportes, que se relacionan entre sí para estructurar la producción académica dentro de la plataforma.
+El sistema está compuesto por tres entidades principales: Usuario, Grupo de investigación y Aporte académico.
 
 👤 Usuario (User)
-
-El usuario es la entidad central de autenticación del sistema. Permite el registro, inicio de sesión y acceso a funcionalidades protegidas. A su vez, puede estar vinculado a un grupo de investigación.
-
-nombre (String) → nombre del usuario (opcional)
-email (String) → identificador único para autenticación (obligatorio / único)
-password (String) → contraseña encriptada (obligatorio)
-grupoId (ObjectId → Group) → grupo al que puede pertenecer (opcional)
-createdAt / updatedAt → campos automáticos del sistema
+Campo	Tipo	Obligatorio	Descripción
+nombre	String	No	Nombre del usuario
+email	String	Sí	Identificador único para login
+password	String	Sí	Contraseña encriptada
+grupoId	ObjectId (Group)	No	Grupo al que puede estar asociado
+createdAt	Date	Auto	Fecha de creación
+updatedAt	Date	Auto	Fecha de actualización
 🧩 Grupo de investigación (Group)
-
-El grupo representa una unidad de trabajo académico dentro de la facultad. Cada grupo es creado por un usuario, quien actúa como su administrador, y concentra información y producción asociada a una línea de investigación.
-
-nombre (String) → nombre del grupo (obligatorio)
-carrera (String) → área académica (opcional)
-director (String) → responsable del grupo (opcional)
-miembros (Array de Strings) → integrantes del grupo (opcional)
-contacto (String) → información de contacto (opcional)
-resumen (String) → descripción general del grupo (opcional)
-icono (String) → representación visual del grupo (opcional)
-createdBy (ObjectId → User) → usuario creador del grupo (obligatorio)
-createdAt / updatedAt → campos automáticos del sistema
+Campo	Tipo	Obligatorio	Descripción
+nombre	String	Sí	Nombre del grupo
+carrera	String	No	Área académica (Filosofía, Antropología, etc.)
+director	String	No	Responsable del grupo
+miembros	[String]	No	Integrantes del grupo
+contacto	String	No	Información de contacto
+resumen	String	No	Descripción general del grupo
+icono	String	No	Representación visual del grupo
+createdBy	ObjectId (User)	Sí	Usuario creador del grupo
+createdAt	Date	Auto	Fecha de creación
+updatedAt	Date	Auto	Fecha de actualización
 📄 Aporte académico (Aporte)
-
-Los aportes representan las publicaciones realizadas dentro de un grupo de investigación. Cada aporte está asociado a un grupo específico y puede tener un autor vinculado.
-
-grupoId (ObjectId → Group) → grupo al que pertenece (obligatorio)
-titulo (String) → título del aporte (obligatorio)
-descripcion (String) → contenido del aporte (obligatorio)
-autor (ObjectId → User) → usuario autor (opcional)
-link (String) → material externo asociado (opcional)
-tipo (String) → tipo de aporte (PDF, evento, ensayo, etc.) (opcional)
-palabrasClave (Array de Strings) → etiquetas de búsqueda (opcional)
-autores (Array de Strings) → autores del trabajo (opcional)
-fecha (Date) → fecha del material (opcional)
-createdAt / updatedAt → campos automáticos del sistema
-
+Campo	Tipo	Obligatorio	Descripción
+grupoId	ObjectId (Group)	Sí	Grupo al que pertenece el aporte
+titulo	String	Sí	Título del aporte
+descripcion	String	Sí	Contenido o desarrollo del aporte
+autor	ObjectId (User)	No	Usuario autor del aporte
+link	String	No	Material externo asociado
+tipo	String	No	Tipo de aporte (PDF, evento, ensayo, etc.)
+palabrasClave	[String]	No	Etiquetas para búsqueda
+autores	[String]	No	Autores del trabajo
+fecha	Date	No	Fecha del material
+createdAt	Date	Auto	Fecha de creación
+updatedAt	Date	Auto	Fecha de actualización
 🧠 Relación entre entidades
-Un usuario puede crear múltiples grupos.
-Un usuario puede crear múltiples aportes.
-Un grupo puede contener múltiples aportes.
-Cada aporte pertenece a un único grupo.
-Un usuario puede estar asociado opcionalmente a un grupo.
-
+Un usuario puede crear múltiples grupos
+Un usuario puede crear múltiples aportes
+Un grupo contiene múltiples aportes
+Cada aporte pertenece a un único grupo
+Un usuario puede estar asociado opcionalmente a un grupo
 
 🔑 Endpoints principales
 
