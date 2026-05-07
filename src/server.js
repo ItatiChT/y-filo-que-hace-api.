@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // Ejecuta la conexión a MongoDB
 connectDB();
 
-// Pone al servidor a "escuchar" peticiones entrantes
-app.listen(PORT, () => {
+// Pone al servidor a "escuchar" peticiones entrantes. 
+app.listen(PORT, '0.0.0.0',() => {//para render
   console.log(`Servidor corriendo en puerto ${PORT}`);
 });
